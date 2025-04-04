@@ -27,6 +27,8 @@ class Sudoku:
         return constraint6
     
     def format_pycosat_solution(self, solution):
+        if solution == 'UNSAT':
+            return None
         grid = [[0] * 9 for _ in range(9)]
         for value in solution:
             if value > 0:

@@ -79,10 +79,13 @@ for line in lines:
     solution = puzzle.format_pycosat_solution(pycosat_solution)
     
     with open('output.txt', 'a') as out_file:
-        out_string = ''
-        for row in range(9):
-            for column in range(9):
-                out_string += str(solution[row][column])
+        if solution == None:
+            out_string ='No solution'
+        else:
+            out_string = ''
+            for row in range(9):
+                for column in range(9):
+                    out_string += str(solution[row][column])
         out_string += '\n'
         out_file.write(out_string)
 

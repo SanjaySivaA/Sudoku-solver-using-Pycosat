@@ -1,11 +1,5 @@
-# import pycosat
-import numpy as np
-
-with open('p.txt', 'r') as file:
-    line = file.readline().replace('\n', '')
-    puzzle = list(line)
-
-grid = np.array(puzzle).reshape(9, 9)
+import pycosat
+from sudoku import Sudoku
 
 constructor = list()
 
@@ -68,11 +62,18 @@ for row_group in range(0, 3):
 
             constructor = []
 
-
 fixed_constraints = constraint1 + constraint2 + constraint3 + constraint4 + constraint5
 
-constraint6 = list()
-for row in range(9):
-    for column in range(9):
-        if grid[row][column] != '.':
-            constraint6.append([100*(row+1)+10*(column+1)+int(grid[row][column])])
+with open('p.txt', 'r') as file:
+    line = file.readline().replace('\n', '')
+
+puzzle = Sudoku(line)
+
+clauses  = fixed_constraints + puzzle.variable_constraint
+
+pycosat_solution = pycosat.solve(clauses)
+solution = puzzle.format_pycosat_solution(pycosat_solution)
+    
+
+for array in solution:
+    print(array)

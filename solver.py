@@ -1,3 +1,5 @@
+# Github repository: https://github.com/SanjaySivaA/Sudoku-solver-using-Pycosat
+
 import pycosat
 from sudoku import Sudoku
 

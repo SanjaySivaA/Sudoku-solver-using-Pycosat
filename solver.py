@@ -4,22 +4,22 @@ from sudoku import Sudoku
 constructor = list()
 
 constraint1 = list()
-for i in range(1, 10):
-    for j in range(1, 10):
-        for x in range(1, 10):
-            constructor.append(100*i+10*j+x)
+for row in range(1, 10):
+    for column in range(1, 10):
+        for number in range(1, 10):
+            constructor.append(100*row+10*column+number)
         constraint1.append(constructor)
         constructor = []
 
 constraint2 = list()
-for i in range(1, 10):
-    for j in range(1, 10):
-        for selected_x in range(1, 10):
-            for x in range(1, 10):
-                if x == selected_x:
-                    constructor.append(100*i+10*j+x)
+for row in range(1, 10):
+    for column in range(1, 10):
+        for selected_number in range(1, 10):
+            for number in range(1, 10):
+                if number == selected_number:
+                    constructor.append(100*row+10*column+number)
                 else:
-                    constructor.append(-(100*i+10*j+x))
+                    constructor.append(-(100*row+10*column+number))
             constraint2.append(constructor)
             constructor = []
 
@@ -31,10 +31,6 @@ for row in range(1, 10):
         constraint3.append(constructor)
         constructor = []
 
-        for current_col in range(1, 10):
-                for next_col in range(current_col + 1, 10):
-                    constraint3.append([-(100*row+10*current_col+number), -(100*row+10*next_col+number)])
-
 constraint4 = list()
 for column in range(1, 10):
     for number in range(1, 10):
@@ -42,10 +38,6 @@ for column in range(1, 10):
             constructor.append(100*row+10*column+number)
         constraint4.append(constructor)
         constructor = []
-
-        for current_row in range(1, 10):
-                for next_row in range(current_row + 1, 10):
-                    constraint4.append([-(100*current_row+10*column+number), -(100*next_row+10*column+number)])
 
 constraint5 = list()
 for row_group in range(0, 3):

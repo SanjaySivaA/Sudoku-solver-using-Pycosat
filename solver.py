@@ -53,11 +53,26 @@ for column in range(1, 10):
                 for next_row in range(current_row + 1, 10):
                     constraint4.append([-(100*current_row+10*column+number), -(100*next_row+10*column+number)])
 
+constraint5 = list()
+for row_group in range(0, 3):
+    for column_group in range(0, 3):
+        for number in range(1, 10):
+            for row in range(1 + 3*row_group, 4 + 3*row_group):
+                for column in range(1 + 3*column_group, 4 + 3*column_group):
+                    constructor += [100*row+10*column+number]
+            constraint5.append(constructor)
+
+            for i in range(len(constructor)):
+                    for j in range(i + 1, len(constructor)):
+                        constraint5.append([-constructor[i], -constructor[j]])
+
+            constructor = []
+
+
+fixed_constraints = constraint1 + constraint2 + constraint3 + constraint4 + constraint5
+
 constraint6 = list()
 for row in range(9):
     for column in range(9):
         if grid[row][column] != '.':
             constraint6.append([100*(row+1)+10*(column+1)+int(grid[row][column])])
-
-puz = list(grid)
-print(puz)

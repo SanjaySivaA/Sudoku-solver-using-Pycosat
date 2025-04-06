@@ -16,7 +16,7 @@
 ## Running the code:
 To run the program,  
 1. Move the input file into the same directory as that of the code.
-2. Change the argument of `open()` in **line 67** of **solver.py** to change the input file from **p.txt**.
+2. Change the argument of `open()` in **line 61** of **solver.py** to change the input file from **p.txt**.
 3. Execute `python3 solver.py`.
 4.  The output will be written into **output.txt**.
 
@@ -94,7 +94,7 @@ The rows and columns of the whole grid are divided into groups of three. Taking 
 For enforcing this we iterate through each row group and column group to make the grids. Inside the grid, we loop through each number from 1 to 9 and for each cell in the grid, we make a disjunction containing literals which correspond to each cell having the current number in the loop.
 However this is not enough, we need to add statements to ensure that values are not repeated in a grid. For doing this we use the
 **De Morgan's Law**
-**NOT**(P **AND** Q) = **NOT** ( P) **AND** **NOT** (Q)
+**NOT**(P **AND** Q) = **NOT** ( P) **OR** **NOT** (Q)
 ie, if the condition **111** satiesfies then **112** should not satisfy
 Therefore we apply this law over all pairs inside the `constructor` list.
 ```py
